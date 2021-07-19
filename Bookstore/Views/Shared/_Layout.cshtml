@@ -1,8 +1,7 @@
 ﻿@{
-    // get cart from session
+
     var cart = new Cart(Context);
 
-    // use current controller or area to determine if tab is active
     var current = ViewContext.RouteData.Values["area"]?.ToString() ?? 
         ViewContext.RouteData.Values["controller"]?.ToString();
 }
@@ -61,7 +60,7 @@
         </nav>
         <header class="jumbotron text-center">
             <a asp-action="Index" asp-controller="Home">
-               <h1 style="padding:30px">Tuxedo Books</h1>
+               <h1 style="padding:50px">Tuxedo Books</h1>
             </a>
         </header>
         <main>

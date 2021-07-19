@@ -9,17 +9,13 @@ namespace Bookstore.Controllers
         private Repository<Book> data { get; set; }
         public HomeController(BookstoreContext ctx) => data = new Repository<Book>(ctx);
 
+
+
         public ViewResult Index()
         {
-            // get a book at random
-            var random = data.Get(new QueryOptions<Book> {
-                OrderBy = b => Guid.NewGuid()
-            });
-
-            return View(random);
+           
+            return View();
         }
-
-     
 
     }
 }
