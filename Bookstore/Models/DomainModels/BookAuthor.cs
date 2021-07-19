@@ -1,5 +1,6 @@
 ﻿namespace Bookstore.Models
 {
+    //book author model
     public class BookAuthor
     {
         // composite primary key and foreign keys

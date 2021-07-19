@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
-
+//cart model
 namespace Bookstore.Models
 {
-    // Cart class stores CartItem objects in session and persistent cookies. See 
-    // CartItem.cs and BookDTO.cs files for more info re: issues with JSON serialization.
-
+  
     public class Cart
     {
         private const string CartKey = "mycart";
@@ -61,21 +59,18 @@ namespace Bookstore.Models
         public CartItem GetById(int id) => 
             items.FirstOrDefault(ci => ci.Book.BookId == id);
 
-        // if the user clicks "Add to Cart" and the item
-        // is already in the cart, it's updated rather than duplicated.
+       
         public void Add(CartItem item) {
             var itemInCart = GetById(item.Book.BookId);
-            // if new, add
+           
             if (itemInCart == null) {
                 items.Add(item);
             }
-            else {  // otherwise, increase quantity amount by 1
+            else { 
                 itemInCart.Quantity += 1;
             }
         }
 
-        // when editing, replace quantity value with new one. Used when user edits a cart item
-        // and changes its quantity
         public void Edit(CartItem item)
         {
             var itemInCart = GetById(item.Book.BookId);
@@ -87,10 +82,6 @@ namespace Bookstore.Models
         public void Remove(CartItem item) => items.Remove(item);
         public void Clear() => items.Clear();
         
-        // stores updated cart items and new count in session and persistent cookie (stores smaller DTO in cookie). 
-        // If count is zero, removes cart and count from session and cookie (this is so cart badge in navbar disappears 
-        // when cart is emptied, rather than showing with a value of zero). 
-
         public void Save() {
             if (items.Count == 0) {
                 session.Remove(CartKey);

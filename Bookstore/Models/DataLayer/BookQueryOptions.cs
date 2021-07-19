@@ -2,10 +2,7 @@
 
 namespace Bookstore.Models
 {
-    // extends generic QueryOptions<Book> class to add a 
-    // SortFilter() method that adds the Sort and Filter
-    // code specific to the Bookstore application
-
+   
     public class BookQueryOptions : QueryOptions<Book>
     {
         public void SortFilter(BooksGridBuilder builder)

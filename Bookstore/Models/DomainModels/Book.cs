@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+//book model
 namespace Bookstore.Models
 {
     public partial class Book

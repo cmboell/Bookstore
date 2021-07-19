@@ -13,18 +13,15 @@ namespace Bookstore.Models
             dbset = context.Set<T>();
         }
 
-        // get number of retrieved entities - use private backing field bc when 
-        // filtering, count might be less than dbset.Count()
         private int? count;
         public int Count => count ?? dbset.Count();
 
-        // retrieve a list of entities
         public virtual IEnumerable<T> List(QueryOptions<T> options) {
             IQueryable<T> query = BuildQuery(options);
             return query.ToList();
         }
 
-        // retrieve a single entity (3 overloads)
+       
         public virtual T Get(int id) => dbset.Find(id);
         public virtual T Get(string id) => dbset.Find(id);
         public virtual T Get(QueryOptions<T> options) {
@@ -32,7 +29,7 @@ namespace Bookstore.Models
             return query.FirstOrDefault();
         }
 
-        // insert, update, delete, save
+      
         public virtual void Insert(T entity) => dbset.Add(entity);
         public virtual void Update(T entity) => dbset.Update(entity);
         public virtual void Delete(T entity) => dbset.Remove(entity);

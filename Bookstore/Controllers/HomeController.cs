@@ -19,10 +19,7 @@ namespace Bookstore.Controllers
             return View(random);
         }
 
-        public ContentResult Register()
-        {
-            return Content("Registration has not been implemented yet. It is implemented in chapter 16.");
-        }
+     
 
     }
 }

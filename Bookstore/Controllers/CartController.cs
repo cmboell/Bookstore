@@ -18,13 +18,12 @@ namespace Bookstore.Controllers
 
         public ViewResult Index() 
         {
-            // create a new Cart object and get items from session or restore from cookie and db
+           
             Cart cart = GetCart();
 
-            // create a new builder object to work with route data in session
+          
             var builder = new BooksGridBuilder(HttpContext.Session);
 
-            // create a new view model object with cart and route information and pass it to the view
             var vm = new CartViewModel {
                 List = cart.List,
                 Subtotal = cart.Subtotal,
@@ -36,7 +35,6 @@ namespace Bookstore.Controllers
         [HttpPost]
         public RedirectToActionResult Add(int id)
         {
-            // get the book the user chose from the database
             var book = data.Get(new QueryOptions<Book> {
                 Includes = "BookAuthors.Author, Genre",
                 Where = b => b.BookId == id
@@ -45,8 +43,7 @@ namespace Bookstore.Controllers
                 TempData["message"] = "Unable to add book to cart.";   
             }
             else {
-                // create and load a new Book DTO, then add it to a new CartItem object
-                // with a default quantity of one.
+                
                 var dto = new BookDTO();
                 dto.Load(book);
                 CartItem item = new CartItem {
@@ -54,7 +51,7 @@ namespace Bookstore.Controllers
                     Quantity = 1  // default value
                 };
 
-                // add new item to cart and save to session state
+              
                 Cart cart = GetCart();
                 cart.Add(item);
                 cart.Save();
@@ -62,9 +59,6 @@ namespace Bookstore.Controllers
                 TempData["message"] = $"{book.Title} added to cart";
             }
 
-            // create a new builder object to work with route data in session, then 
-            // redirect to Book/List action method, passing a dictionary of route segment 
-            // values to build URL 
             var builder = new BooksGridBuilder(HttpContext.Session);
             return RedirectToAction("List", "Book", builder.CurrentRoute);
         }
@@ -95,7 +89,7 @@ namespace Bookstore.Controllers
 
         public IActionResult Edit(int id)
         {
-            // get selected cart item from session and pass it to the view
+           
             Cart cart = GetCart();
             CartItem item = cart.GetById(id);
             if (item == null)

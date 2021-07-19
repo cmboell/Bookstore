@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+//seed genre model
 namespace Bookstore.Models
 {
     internal class SeedGenres : IEntityTypeConfiguration<Genre>

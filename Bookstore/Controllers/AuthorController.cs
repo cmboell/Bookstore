@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bookstore.Models;
-
-namespace Bookstore.Controllers //d
+//author controller
+namespace Bookstore.Controllers
 {
     public class AuthorController : Controller
     {
@@ -10,15 +10,15 @@ namespace Bookstore.Controllers //d
 
         public IActionResult Index() => RedirectToAction("List");
 
-        // dto has properties for the paging and sorting route segments defined in the Startup.cs file
+       
         public ViewResult List(GridDTO vals)
         {
-            // get grid builder, which loads route segment values and stores them in session
+           
             string defaultSort = nameof(Author.FirstName);
             var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
             builder.SaveRouteSegments();
 
-            // create options for querying authors. OrderBy depends on value in SortField route 
+             
             var options = new QueryOptions<Author> {
                 Includes = "BookAuthors.Book",
                 PageNumber = builder.CurrentRoute.PageNumber,
@@ -30,15 +30,14 @@ namespace Bookstore.Controllers //d
             else
                 options.OrderBy = a => a.LastName;
 
-            // create view model and add page of author data, the current route,
-            // and the total number of pages
+           
             var vm = new AuthorListViewModel {
                 Authors = data.List(options),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Count)
             };
 
-            // pass view model to view
+           
             return View(vm);
         }
 

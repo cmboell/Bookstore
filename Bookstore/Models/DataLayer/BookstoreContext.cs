@@ -15,10 +15,10 @@ namespace Bookstore.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // BookAuthor: set primary key 
+            //set primary key 
             modelBuilder.Entity<BookAuthor>().HasKey(ba => new { ba.BookId, ba.AuthorId });
 
-            // BookAuthor: set foreign keys 
+            //set foreign keys 
             modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Book)
                 .WithMany(b => b.BookAuthors)
                 .HasForeignKey(ba => ba.BookId);
@@ -26,7 +26,6 @@ namespace Bookstore.Models
                 .WithMany(a => a.BookAuthors)
                 .HasForeignKey(ba => ba.AuthorId);
 
-            // Book: remove cascading delete with Genre
             modelBuilder.Entity<Book>().HasOne(b => b.Genre)
                 .WithMany(g => g.Books)
                 .OnDelete(DeleteBehavior.Restrict);

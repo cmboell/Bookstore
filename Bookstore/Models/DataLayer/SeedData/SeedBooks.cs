@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+//seed book model
 namespace Bookstore.Models
 {
     internal class SeedBooks : IEntityTypeConfiguration<Book>

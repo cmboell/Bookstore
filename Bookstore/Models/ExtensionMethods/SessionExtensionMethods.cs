@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 
 namespace Bookstore.Models
 {
-    // same as in chapter - make it easier to get and set objects in session
-
     public static class SessionExtensions
     {
         public static void SetObject<T>(this ISession session, string key, T value) => 
