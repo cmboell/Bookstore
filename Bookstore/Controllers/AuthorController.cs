@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Bookstore.Models;
 
-namespace Bookstore.Controllers
+namespace Bookstore.Controllers //d
 {
     public class AuthorController : Controller
     {
